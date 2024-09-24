@@ -1,0 +1,233 @@
+﻿create database ExtendTech
+use ExtendTech
+
+
+CREATE TABLE [dbo].[AdminUser]
+ 
+([ID]           INT            NOT NULL,
+ [NameUser]     NVARCHAR (MAX) NULL,
+ [RoleUser]     NVARCHAR (MAX) NULL,
+ [PasswordUser] NCHAR (50)     NULL,
+ PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+
+CREATE TABLE [dbo].[Category]
+(
+
+[ID]   INT IDENTITY (1, 1) NOT NULL,
+[IDCate]   NCHAR (20)     NOT NULL,
+[NameCate]  NVARCHAR(200) NULL,
+[KeyWords]  NVARCHAR(150) NULL,
+[CreateBy]  NVARCHAR(150) NULL,
+[CreateDate]  datetime,
+PRIMARY KEY CLUSTERED ([IDCate] ASC)
+);
+
+CREATE TABLE [dbo].[Handsize]
+(
+
+[ID]   INT IDENTITY (1, 1) NOT NULL,
+[IDSize]   NCHAR (30)     NOT NULL,
+[NameSize]  NVARCHAR(200) NULL,
+
+PRIMARY KEY CLUSTERED ([IDSize] ASC)
+);
+
+
+CREATE TABLE [dbo].[Nentang]
+(
+
+[ID]   INT IDENTITY (1, 1) NOT NULL,
+[IDBase]   NCHAR (30)     NOT NULL,
+[NameBase]  NVARCHAR(200) NULL,
+
+PRIMARY KEY CLUSTERED ([IDBase] ASC)
+);
+
+
+CREATE TABLE [dbo].[Customer]
+(
+[IDCus] INT  IDENTITY (1, 1) NOT NULL,
+[NameCus] NVARCHAR(200) Not null,
+[FirstName]  NVARCHAR(40) NULL,
+[DateBirth] DATETIME ,
+[Email] NVARCHAR(100) Not null,
+[PasswordCus] NCHAR (50)     NULL,
+PRIMARY KEY CLUSTERED ([IDCus] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[Products] (
+    [ProductID]     INT             IDENTITY (1, 1) NOT NULL,
+    [NamePro]       NVARCHAR (MAX)  NULL,
+    [DecriptionPro] NVARCHAR (MAX)  NULL,
+    [Category]      NCHAR (20)      NULL,
+	[Handsize]   NCHAR(30) NULL,
+	[Nentang]    NChar(30) null,
+    [Price]         DECIMAL (18, 2) NULL,
+    [ImagePro]      NVARCHAR (MAX)  NULL,
+    [KeyWords] NVARCHAR(MAX) NULL,
+    [IsSale]  		BIT NOT NULL,
+    [IsHot]           BIT NOT NULL,
+    [IsNew]   BIT NOT NULL,	
+	[ThongSo]   NVARCHAR(MAX) NULL,
+    [Tuongthich] NVARCHAR(MAX) NULL,
+    [Tronghop]   NVARCHAR(MAX) NULL,
+    [Hotro]   NVARCHAR(MAX) NULL,
+    [Video]   NVARCHAR (MAX)  NULL,  
+	[Color]   NVARCHAR (10)   NULL,
+	[Quantity] int null,
+    PRIMARY KEY CLUSTERED ([ProductID] ASC),
+    CONSTRAINT [FK_Pro_Category] FOREIGN KEY ([Category]) REFERENCES [dbo].[Category] ([IDCate]),
+	CONSTRAINT [FK_Pro_HandSize] FOREIGN KEY ([Handsize]) REFERENCES [dbo].[Handsize] ([IDSize]),
+	CONSTRAINT [FK_Pro_Nentang] FOREIGN KEY ([Nentang]) REFERENCES [dbo].[Nentang] ([IDBase])
+);
+
+
+
+CREATE TABLE [dbo].[OrderPro] (
+    [ID]               INT            IDENTITY (1, 1) NOT NULL,
+    [DateOrder]        DATE           NULL,
+    [IDCus]            INT            NULL,
+    [AddressDeliverry] NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([IDCus]) REFERENCES [dbo].[Customer] ([IDCus])
+  
+
+);
+
+CREATE TABLE [dbo].[OrderDetail] (
+    [ID]        INT        IDENTITY (1, 1) NOT NULL,
+    [IDProduct] INT        NULL,
+    [IDOrder]   INT        NULL,
+    [Quantity]  INT        NULL,
+    [UnitPrice] FLOAT (53) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([IDProduct]) REFERENCES [dbo].[Products] ([ProductID]),
+    FOREIGN KEY ([IDOrder]) REFERENCES [dbo].[OrderPro] ([ID])
+);
+
+CREATE TABLE  [dbo].[KhamPha]([ID] INT IDENTITY (1, 1) NOT NULL,
+[TITLE] NVARCHAR(MAX) NULL,
+[VIDEO] NVARCHAR(MAX) NULL,
+PRIMARY KEY CLUSTERED ([ID] ASC));
+
+
+CREATE TABLE  [dbo].[DoanhNghiep](
+[ID] INT IDENTITY (1, 1) NOT NULL,
+[TITLE] NVARCHAR(MAX) NULL,
+[VIDEO] NVARCHAR(MAX) NULL,
+PRIMARY KEY CLUSTERED ([ID] ASC));
+
+
+CREATE TABLE  [dbo].[Hotro](
+[ID] INT IDENTITY (1, 1) NOT NULL,
+[TITLE] NVARCHAR(MAX) NULL,
+[VIDEO] NVARCHAR(MAX) NULL,
+PRIMARY KEY CLUSTERED ([ID] ASC));
+
+
+INSERT INTO [dbo].[Category] ([IDCate], [NameCate], [KeyWords], [CreateBy], [CreateDate])
+VALUES
+('CAT001', N'Dòng Master', NULL, 'system', GETDATE()),
+('CAT002', N'Dòng Ergo', NULL, 'system', GETDATE()),
+('CAT003', N'Đa thiết bị', NULL, 'system', GETDATE()),
+('CAT004', N'Dành cho giáo dục', NULL, 'system', GETDATE()),
+('CAT005', N'Dành cho doanh nghiệp', NULL, 'system', GETDATE()),
+('CAT006', N'Phiên bản', NULL, 'system', GETDATE());
+
+INSERT INTO [dbo].[Handsize] ([IDSize], [NameSize])
+VALUES
+('SIZE001', N'Nhỏ'),
+('SIZE002', N'Trung bình'),
+('SIZE003', N'Lớn');
+
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX ANYWHERE 3S FOR MAC', N'Chuột hiệu suất nhỏ gọn', 'CAT003', 'SIZE001', NULL, 0, '~/Content/images/MX anywhere.png', NULL, 0, 0, 1, 
+    N'Kích thước Chuột MX Master 3S Chiều cao: 124,9 mm Chiều rộng: 84,3 mm Chiều dày: 51 mm Trọng lượng: 141 g Đầu thu USB Logi Bolt Chiều cao: 6,11 mm Chiều rộng: 14,4 mm Chiều dày: 18,65 mm Trọng lượng: 1,68 g Thông số kỹ thuật Công nghệ cảm biến Công nghệ cảm biến: Darkfield có độ chính xác cao Giá trị danh nghĩa: 1000 DPI DPI (Giá trị tối đa và tối thiểu): 200-8000 DPI (có thể thiết lập với các mức tăng là 50 DPI)', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên Linux 6Các chức năng cơ bản của thiết bị sẽ được hỗ trợ mà không cần phần mềm dành cho các hệ thống khác ngoài Windows và macOS ChromeOS™ 7Các chức năng cơ bản của thiết bị sẽ được hỗ trợ mà không cần phần mềm dành cho các hệ thống khác ngoài Windows và macOS iPadOS 14 trở lên 8Các chức năng cơ bản của thiết bị sẽ được hỗ trợ mà không cần phần mềm dành cho các hệ thống khác ngoài Windows và macOS Android™ 8.0 trở lên 9Các chức năng cơ bản của thiết bị sẽ được hỗ trợ mà không cần phần mềm dành cho các hệ thống khác ngoài Windows và macOS Không tương thích với Công nghệ Bộ thu Đầu thu USB của Logitech Unifying Đầu thu USB Logi Bolt Yêu cầu: Có sẵn cổng USB-A Windows 10, 11 trở lên macOS 10.15 trở lên Linux 10', 
+    N'Chuột Đầu thu USB Logi Bolt Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 0);
+
+-- MX Master 3S
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX Master 3S', N'Chuột hiệu suất cao với thiết kế công thái học', 'CAT001', 'SIZE002', NULL, 0, '~/Content/images/mx master 3s.png', NULL, 1, 1, 1, 
+    N'Kích thước Chuột MX Master 3S Chiều cao: 124,9 mm Chiều rộng: 84,3 mm Chiều dày: 51 mm Trọng lượng: 141 g Đầu thu USB Logi Bolt Chiều cao: 6,11 mm Chiều rộng: 14,4 mm Chiều dày: 18,65 mm Trọng lượng: 1,68 g Thông số kỹ thuật Công nghệ cảm biến Công nghệ cảm biến: Darkfield có độ chính xác cao Giá trị danh nghĩa: 1000 DPI DPI (Giá trị tối đa và tối thiểu): 200-8000 DPI (có thể thiết lập với các mức tăng là 50 DPI)', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên Linux 6', 
+    N'Chuột Đầu thu USB Logi Bolt Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 100);
+
+-- MX Anywhere 3S
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX Anywhere 3S', N'Chuột hiệu suất nhỏ gọn và đa dụng', 'CAT003', 'SIZE001', NULL, 0, '~/Content/images/MX anywhere.png', NULL, 0, 1, 1, 
+    N'Kích thước Chuột MX Anywhere 3S Chiều cao: 100 mm Chiều rộng: 61 mm Chiều dày: 34 mm Trọng lượng: 100 g Đầu thu USB Logi Bolt Chiều cao: 6 mm Chiều rộng: 14 mm Chiều dày: 18 mm Trọng lượng: 1,5 g Thông số kỹ thuật Công nghệ cảm biến Công nghệ cảm biến: Darkfield có độ chính xác cao Giá trị danh nghĩa: 1000 DPI DPI (Giá trị tối đa và tối thiểu): 200-8000 DPI (có thể thiết lập với các mức tăng là 50 DPI)', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên', 
+    N'Chuột Đầu thu USB Logi Bolt Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 200);
+
+-- MX Keys S for Mac
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX Keys S for Mac', N'Bàn phím cơ học hiệu suất cao dành cho Mac', 'CAT002', NULL, NULL, 0, '~/Content/images/POPKEY.png', NULL, 1, 0, 1, 
+    N'Kích thước Bàn phím MX Keys S for Mac Chiều cao: 22 mm Chiều rộng: 430 mm Chiều dày: 131 mm Trọng lượng: 810 g', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên', 
+    N'Bàn phím USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 150);
+
+-- MX Mechanical
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX Mechanical', N'Bàn phím cơ học với switch cơ học chất lượng cao', 'CAT002', NULL, NULL, 0, '~/Content/images/pebblekey.png', NULL, 0, 1, 1, 
+    N'Kích thước Bàn phím MX Mechanical Chiều cao: 40 mm Chiều rộng: 430 mm Chiều dày: 135 mm Trọng lượng: 930 g', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên', 
+    N'Bàn phím USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 120);
+
+
+	-- Lift
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('Lift', N'Chuột công thái học với thiết kế nâng cao', 'CAT002', 'SIZE001', NULL, 0, '~/Content/images/ergo mouse.png', NULL, 0, 1, 1, 
+    N'Kích thước Chuột Lift Chiều cao: 74 mm Chiều rộng: 71 mm Chiều dày: 53 mm Trọng lượng: 125 g', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên', 
+    N'Chuột Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 80);
+
+-- ERGO M575
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('ERGO M575', N'Chuột công thái học với điều khiển trackball', 'CAT002', 'SIZE002', NULL, 0, '~/Content/images/ergo-mose1.png', NULL, 0, 1, 1, 
+    N'Kích thước Chuột ERGO M575 Chiều cao: 97 mm Chiều rộng: 130 mm Chiều dày: 76 mm Trọng lượng: 135 g', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ Windows® 10, 11 trở lên macOS 10.15 trở lên', 
+    N'Chuột Đầu thu USB Logi Bolt Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 60);
+
+-- MX Master for Mac
+INSERT INTO [dbo].[Products] 
+    ([NamePro], [DecriptionPro], [Category], [Handsize], [Nentang], [Price], [ImagePro], [KeyWords], [IsSale], [IsHot], [IsNew], [ThongSo], [Tuongthich], [Tronghop], [Hotro], [Video], [Color], [Quantity])
+VALUES
+    ('MX Master for Mac', N'Chuột cao cấp dành cho Mac với hiệu suất tối ưu', 'CAT001', 'SIZE003', NULL, 0, '~/Content/images/MX master for mac.png', NULL, 1, 0, 1, 
+    N'Kích thước Chuột MX Master for Mac Chiều cao: 124 mm Chiều rộng: 85 mm Chiều dày: 51 mm Trọng lượng: 145 g', 
+    N'Khả năng tương thích Yêu cầu công nghệ Bluetooth tiết kiệm năng lượng Được chế tạo cho máy tính xách tay Intel® Evo ™ macOS 10.15 trở lên', 
+    N'Chuột Đầu thu USB Logi Bolt Dây sạc USB-C (USB-A tới USB-C) Tài liệu hướng dẫn sử dụng', 
+    N'Tìm tất cả tài liệu chúng tôi có để thiết lập và sử dụng sản phẩm này nhanh chóng.', 
+    NULL, NULL, 70);
