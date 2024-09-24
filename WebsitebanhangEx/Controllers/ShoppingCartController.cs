@@ -89,6 +89,7 @@ namespace WebsitebanhangEx.Controllers
             ViewBag.NameProduct = TempData["NameProduct"];
             ViewBag.OrderQuantity = TempData["OrderQuantity"];
             ViewBag.DeliveryAddress = TempData["DeliveryAddress"];
+            ViewBag.UnitPrice = TempData["UnitPrice"];
             
             return View();
         }
@@ -127,11 +128,12 @@ namespace WebsitebanhangEx.Controllers
                     {
                         var update_quan_pro = p.Quantity - item._quantity;
                         p.Quantity = update_quan_pro;
+
                     }
                    
                     TempData["OrderQuantity"] = cart.Items.Count();
-                  
-                
+
+                    TempData["UnitPrice"] = _order_detail.UnitPrice;
                     TempData["NameProduct"] = _order_detail.Product.NamePro;
 
 
