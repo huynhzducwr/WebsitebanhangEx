@@ -84,6 +84,12 @@ namespace WebsitebanhangEx.Controllers
         }
         public ActionResult CheckOut_Success()
         {
+
+            ViewBag.CustomerName = TempData["CustomerName"];
+            ViewBag.NameProduct = TempData["NameProduct"];
+            ViewBag.OrderQuantity = TempData["OrderQuantity"];
+            ViewBag.DeliveryAddress = TempData["DeliveryAddress"];
+            
             return View();
         }
         public ActionResult CheckOut(FormCollection form)
@@ -94,8 +100,21 @@ namespace WebsitebanhangEx.Controllers
                 OrderPro _order = new OrderPro();
                 _order.DateOrder = DateTime.Now;
                 _order.AddressDeliverry = form["Địa chỉ nhận hàng"];
+                int customerId = int.Parse(form["Mã khách hàng"]);
                 _order.IDCus = int.Parse(form["Mã khách hàng"]);
+
                 database.OrderProes.Add(_order);
+             
+
+                var customer = database.OrderProes.FirstOrDefault(c => c.ID == customerId);
+                if (customer != null)
+                {
+                    TempData["CustomerName"] = customer.Customer.NameCus;
+                }
+
+                TempData["DeliveryAddress"] = _order.AddressDeliverry;
+
+
                 foreach (var item in cart.Items)
                 {
                     OrderDetail _order_detail = new OrderDetail();
@@ -109,9 +128,17 @@ namespace WebsitebanhangEx.Controllers
                         var update_quan_pro = p.Quantity - item._quantity;
                         p.Quantity = update_quan_pro;
                     }
+                   
+                    TempData["OrderQuantity"] = cart.Items.Count();
+                  
+                
+                    TempData["NameProduct"] = _order_detail.Product.NamePro;
 
 
                 }
+
+
+
                 database.SaveChanges();
                 cart.ClearCart();
                 return RedirectToAction("CheckOut_Success", "ShoppingCart");

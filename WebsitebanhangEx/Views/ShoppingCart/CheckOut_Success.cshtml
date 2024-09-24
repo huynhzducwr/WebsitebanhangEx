@@ -1,4 +1,4 @@
-﻿
+﻿@model WebsitebanhangEx.Models.Cart
 @{
     ViewBag.Title = "CheckOut_Success";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -15,12 +15,21 @@
             width: 100%;
             height: 350px;
         }
+
+        .content-container{
+            height:auto;
+        }
     </style>
 </head>
 <body>
     <div class="content-container">
         <h2>CheckOut Successfull</h2>
         <h4>Orders of you had sent to the Shop. You will receive goods in 2-3 days. Thanks.</h4>
+        <p><strong>Customer Name: </strong> @ViewBag.CustomerName</p>
+        <p><strong>Name Product: </strong> @ViewBag.NameProduct</p>
+        <p><strong>Quantity: </strong> @ViewBag.OrderQuantity</p>
+        <p><strong>Delivery Address: </strong> @ViewBag.DeliveryAddress</p>
+
         <a style="text-decoration:none;color:dimgray;font-size:medium; font-weight:bold;" href="@Url.Action("Index", "Product")">Continuos shopping...</a>
     </div>
     <div>
