@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebsitebanhangEx.Models.OrderDetail>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+
+<h2> Quản lý hàng hóa</h2>
+
+@using (Html.BeginForm("Index", "OrderDetail", FormMethod.Get))
+{
+    <input type="text" name="_name" />
+    <input type="submit" value="Search" />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProduct)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IDOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDProduct)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+              
+             
+            </tr>
+        }
+
+    </table>
+
+
+}
+
+
+
+

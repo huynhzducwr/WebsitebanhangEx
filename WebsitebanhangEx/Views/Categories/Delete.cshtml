@@ -1,0 +1,113 @@
+﻿@model WebsitebanhangEx.Models.Category
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap" rel="stylesheet">
+<style>
+    .container {
+        height: 500px;
+        float: right;
+        width: 70%;
+        background-color: #f4f4f4;
+    }
+
+    #title-cate {
+        font-size: x-large;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .my-form-class {
+        margin: auto;
+    }
+
+    .avz {
+        float: left;
+        background-color: #f4f4f4;
+        width: 30%;
+        height: 500px;
+    }
+
+    #idcatee {
+        margin-right: 100px;
+    }
+
+    .text-box {
+        border: 1px solid #ccc; /* Đường viền ô văn bản */
+        border-radius: 5px; /* Độ cong của các góc */
+        padding: 5px; /* Khoảng cách từ nội dung đến đường viền */
+        font-size: 16px; /* Kích thước văn bản */
+        width: 200px; /* Chiều rộng */
+    }
+
+        /* Tô màu nền khi ô văn bản được focus (được chọn) */
+        .text-box:focus {
+            background-color: #f0f0f0;
+        }
+
+    .btn-default {
+        background-color: #0074cc; /* Màu nền của nút */
+        color: #fff; /* Màu văn bản trên nút */
+        border: none; /* Loại bỏ đường viền */
+        border-radius: 5px; /* Độ cong của các góc */
+        padding: 10px 20px; /* Khoảng cách từ nội dung đến đường viền */
+        font-size: 16px; /* Kích thước văn bản */
+        cursor: pointer; /* Thay đổi kiểu con trỏ khi hover */
+        margin-left: -30px;
+    }
+
+        /* Tô màu nền khi nút "Search" được hover */
+        .btn-default:hover {
+            background-color: #0058a6;
+        }
+
+    .back-to-list-link {
+        /* Đẩy nút qua trái 10px */
+        margin-left: -30px;
+        /* Thêm kiểu dáng khác mà bạn muốn áp dụng */
+    }
+</style>
+<div class="avz">
+
+
+</div>
+<div class="container">
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Category</h4>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID) : <span class="display-text">@Html.DisplayFor(model => model.ID)</span>
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NameCate) : <span class="display-text">@Html.DisplayFor(model => model.NameCate)</span>
+            </dt>
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "back-to-list-link" })
+
+            </div>
+        }
+    </div>
+</div>

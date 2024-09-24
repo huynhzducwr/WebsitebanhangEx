@@ -1,0 +1,226 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.font-chuot {
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-right: 10px;
+}
+
+.font-mx {
+    font-weight: 100;
+}
+
+#container-detail {
+    display: flex;
+    list-style: none;
+    padding-left: 150px;
+    padding-top: 50px;
+    margin-top: 0;
+}
+
+.container-prod-detail {
+    height: 1100px;
+    width: 120%;
+    background-color: #f4f4f4;
+}
+
+.mouse-detail {
+    display: flex;
+    justify-content: center;
+    padding-left: 310px;
+}
+
+.pic-container {
+    background-color: #f4f4f4;
+    width: 45%;
+    height: 600px;
+}
+
+.detaill {
+    width: 25%;
+    height: 600px;
+    background-color: #f4f4f4;
+    padding-left: 123px;
+}
+
+.chuott {
+    width: 360px;
+    height: 490px;
+}
+
+.dongmasterr {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+    .dongmasterr:hover {
+        text-decoration: underline;
+    }
+
+.chuot-khongday {
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.price-prod {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.xamnhat {
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.thongso {
+    margin-right: auto;
+    padding-left: 10px;
+}
+
+#list-detail {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+}
+
+.tieu-de {
+    font-weight: bold;
+}
+
+#toggleButton1 {
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+.font-text {
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+#toggleButton2 {
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+#list-detail2 {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+}
+
+#toggleButton3 {
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+#list-detail3 {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+}
+
+#toggleButton4 {
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+#list-detail4 {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+}
+
+#nut-muangay {
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tragop-doimoi {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 13px;
+}
+
+#nut-tragop {
+    width: 48%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#nut-doimoi {
+    width: 48%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mota4k {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-top: 60px;
+}
+
+.text {
+    width: 48%;
+    padding-right: 10px;
+}
+
+.anh4k {
+    width: 46%;
+    padding-top: 40px;
+}
+
+.anh4kk {
+    width: 400px;
+    height: 234px;
+}
+
+.vid {
+    width: 538px;
+    height: 304px;
+}
+
+#content2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text1 {
+    padding-top: 50px;
+    width: 45%;
+}
+
+#content3 {
+    width: 100%;
+}
+
+.ketnoi {
+    width: 100%;
+}

@@ -1,0 +1,119 @@
+﻿@model WebsitebanhangEx.Models.Handsize
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    .container {
+        height: 500px;
+        float: right;
+        width: 70%;
+        background-color: #f4f4f4;
+    }
+
+    #title-cate {
+        font-size: x-large;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .my-form-class {
+        margin: auto;
+    }
+
+    .avz {
+        float: left;
+        background-color: #f4f4f4;
+        width: 30%;
+        height: 500px;
+    }
+
+    #idcatee {
+        margin-right: 100px;
+    }
+
+    .btn-default {
+        /* Your styles for the button */
+        background-color: #0074cc; /* Màu nền của nút */
+        color: #fff; /* Màu văn bản trên nút */
+        border: none; /* Loại bỏ đường viền */
+        border-radius: 5px; /* Độ cong của các góc */
+        padding: 10px 20px; /* Khoảng cách từ nội dung đến đường viền */
+        font-size: 16px; /* Kích thước văn bản */
+        cursor: pointer;
+        top: 60%;
+    }
+
+        .btn-default:hover {
+            background-color: #0058a6;
+        }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 16px;
+    }
+
+
+    .text-danger {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+<div class="avz">
+
+
+</div>
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Kích cỡ bàn tay</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.IDSize)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NameSize, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameSize, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NameSize, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div style="padding-left:30px; padding-top:65px;">
+        @Html.ActionLink("Trở về danh sách", "Index")
+    </div>
+</div>
+
+

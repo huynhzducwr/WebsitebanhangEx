@@ -1,0 +1,289 @@
+﻿@model WebsitebanhangEx.Models.AdminUser
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;300&display=swap" rel="stylesheet">
+
+<style>
+    .body {
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+
+    .logo {
+        margin: 20px;
+        background-size: contain;
+        height: 60px;
+    }
+
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        padding-left: 160px;
+    }
+
+    .heading {
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+    }
+
+    .description {
+        color: #2F3132;
+        font-weight: 300;
+        font-size: 16px;
+        margin: 0 0 20px;
+    }
+
+    .containerr {
+        display: flex;
+        justify-content: center;
+        padding-left: 310px;
+    }
+
+    .form-label {
+        color: dimgray;
+        font-size: medium;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+        .form-label.left {
+            position: absolute;
+            left: 0px;
+            top: 12px;
+        }
+
+
+    .text-box.single-line.password {
+        /* Tùy chỉnh kiểu chữ, màu nền, và đặc điểm khác cho trường mật khẩu */
+        width: 100%;
+        height: 45px;
+        font-size: 1em;
+        font-family: inherit;
+        font-weight: 200;
+        color: #2F3132;
+        background-color: #f4f4f4;
+        box-sizing: border-box;
+        border: none;
+        padding: 1px 10px 6px 5px;
+        filter: none;
+        cursor: text;
+        transition: border-bottom 0.3s; /* Add a transition for the bottom border */
+        border-bottom: 1px solid dimgrey; /* Initially, set the bottom border to transparent */
+    }
+
+    .field-validation-error {
+        border-color: dimgray;
+    }
+
+
+    .validation-message {
+        color: #f00;
+    }
+
+    .register-button {
+        padding-top: 15px;
+        text-align: center;
+        width: 460px;
+        height: 55px;
+        color: #fff;
+        margin-left: 604px;
+        background-color: #2F3132;
+        border: 2px solid transparent;
+        transition: 0.2s;
+        margin-left: auto;
+        padding-top: 5px;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: medium;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+
+        .register-button:hover {
+            color: black;
+            border: 2px solid black;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+    .field {
+        display: block;
+        position: relative;
+        margin: auto;
+        width: 405px;
+    }
+
+    .eye_i {
+        margin: 10px;
+        padding-right: 0;
+        cursor: pointer;
+    }
+
+    .field11 {
+        display: flex;
+        position: relative;
+        margin: auto;
+        width: 405px;
+    }
+
+        .field11 input {
+            width: 100%;
+            height: 45px;
+            font-size: 1em;
+            font-family: inherit;
+            font-weight: 200;
+            color: #2F3132;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+            border: none;
+            padding: 1px 10px 6px 5px;
+            filter: none;
+            cursor: text;
+            transition: border-bottom 0.3s; /* Add a transition for the bottom border */
+            border-bottom: 1px solid dimgrey;
+            outline: 0;
+        }
+
+    .field1 {
+        display: flex;
+        position: relative;
+        margin: auto;
+        width: 405px;
+    }
+
+        .field1 input {
+            width: 100%;
+            padding: 10px 0;
+            border: 0;
+            outline: 0;
+            font-size: 4px;
+            color: #555;
+        }
+
+        .field1 img {
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+    .link_text {
+        font-weight: 300;
+        color: #697172;
+        font-size: 16px;
+        margin: 30px 0 20px 0;
+        width: 421px;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    a {
+        color: black;
+        cursor: pointer;
+        text-decoration: underline;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+        a:hover {
+            color: dimgray;
+        }
+
+    .text_or {
+        text-align: center;
+        padding: 10px;
+        color: #697172;
+        font-family: 'Lexend Deca', sans-serif;
+        padding-right: 140px;
+    }
+
+    .registerr {
+        align-items: center;
+    }
+</style>
+<div class="logo centered">
+    <img src="https://id.logi.com/dccd9087eb658a5474eb27d1b43901a4.svg" alt="Logitech">
+</div>
+<div class="heading centered">Tạo Tài khoản công ty</div>
+<div class="description centered">Hoàn thành tất cả các trường để tạo ID Logi của bạn.</div>
+@using (Html.BeginForm("RegisterUser", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewBag.ErrorRegister != null)
+    {
+        <p>@ViewBag.ErrorRegister</p>
+    }
+
+    <div class="containerr">
+        <div class="formm">
+
+            <div class="field">
+                @Html.LabelFor(model => model.ID, new { @class = "form-label" })<br />
+                <div class="field11">
+                    @Html.EditorFor(model => model.ID, new { @class = "styled_input field-validation-error" })
+                    @Html.ValidationMessageFor(model => model.ID)
+                </div>
+
+            </div>
+
+            <div class="field">
+                @Html.LabelFor(model => model.NameUser, new { @class = "form-label" })<br />
+                <div class="field11">
+                    @Html.EditorFor(model => model.NameUser, new { @class = "styled_input field-validation-error" })
+                    @Html.ValidationMessageFor(model => model.NameUser)
+                </div>
+
+            </div>
+
+
+            <div class="field">
+                @Html.LabelFor(model => model.RoleUser, new { @class = "form-label" })<br />
+                <div class="field11">
+                    @Html.EditorFor(model => model.RoleUser, new { @class = "styled_input field-validation-error" })
+                    @Html.ValidationMessageFor(model => model.RoleUser)
+                </div>
+
+            </div>
+
+
+
+            <div class="field">
+                @Html.LabelFor(model => model.PasswordUser, new { @class = "form-label" })<br />
+                <div class="field11">
+                    @Html.PasswordFor(model => model.PasswordUser, new { @class = "styled_input field-validation-error" })
+                    @Html.ValidationMessageFor(model => model.PasswordUser)
+                </div>
+
+            </div>
+            <div class="field">
+                @Html.LabelFor(model => model.ComfirmPass, new { @class = "form-label" })<br />
+                <div class="field11">
+                    @Html.PasswordFor(model => model.ComfirmPass, new { @class = "styled_input field-validation-error" })
+                    @Html.ValidationMessageFor(model => model.ComfirmPass)
+                </div>
+
+            </div>
+            <input type="submit" value="Register" class="register-button" />
+            <p class="text_or">HOẶC</p>
+            <p class="text_or"><a class="registerr" href="https://localhost:44349/LoginUser/Index">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</p>
+
+
+
+
+
+        </div>
+
+    </div>
+
+}
+
+
+
+
+

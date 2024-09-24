@@ -1,0 +1,191 @@
+﻿@model PagedList.IPagedList<WebsitebanhangEx.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+    p {
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    .btn {
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        transform: translateY(-50%);
+        transition: 0.5s;
+        cursor: pointer;
+        top: auto;
+        padding-left: 80px;
+        padding-top: 37px;
+    }
+
+        .btn:hover {
+            color: black;
+        }
+
+    .themgiohang {
+        width: 340px;
+        height: 40px;
+        background-color: #2F3132;
+        border: 2px solid transparent;
+        transition: 0.2s;
+    }
+
+        .themgiohang:hover {
+            color: black;
+            border: 2px solid black;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+/*    a {
+        color: white;
+        font-family: 'Lexend Deca', sans-serif;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: black;
+        }
+*/
+    a {
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: black;
+        }
+
+    .card-pro {
+        cursor: pointer;
+        width: 340px;
+        border-radius:4px ;
+    }
+
+        .card-pro .themgiohang {
+            display: none;
+        }
+
+    .container {
+        position: relative;
+        z-index: 2; /* Đặt mức z-index thấp hơn để đảm bảo nó xuất hiện trên hình ảnh */
+        width: 75%;
+        float: right;
+    }
+
+    .menu-cate {
+        width: 25%;
+        float: left;
+    }
+
+    .custom-link {
+        /* Thêm các thuộc tính CSS tùy chỉnh ở đây */
+        text-decoration: none; /* Loại bỏ gạch chân mặc định của liên kết */
+        color: #3366cc; /* Đổi màu văn bản của liên kết */
+        font-weight: bold; /* Đặt độ đậm cho văn bản của liên kết */
+        /* Thêm các thuộc tính CSS khác tùy chọn */
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    .MenuPage li {
+        display: inline;
+    }
+    .MenuPage {
+        color: black;
+    }
+    .search-button {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #808080;
+        color: #ffffff;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .search-button:hover {
+            background-color: #c3bbbb;
+        }
+</style>
+<div class="menu-cate">
+    <div style=" margin-top:40px;margin-left:43px">
+        <a href="/Product/SearchOption" class="search-button">Search theo giá</a>
+    </div>
+   
+    @{ Html.RenderAction("CategoryPartial", "Categories");}
+    @{ Html.RenderAction("HandSizePartial", "HandSizes");}
+    @{ Html.RenderAction("NentangPartial", "Nentang");}
+</div>
+<div class="container">
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-12 col-md-4 col-lg-3" style="margin-bottom: 20px; margin-right: 7px;margin-left:20px;margin-top:76px;">
+                <div class="card-pro">
+
+                    <br /> <!-- in ra id của prod -->
+                    <a href="@Url.Action("Details", new { id = pro.ProductID })">
+                        <img src="@Url.Content(pro.ImagePro)" height="340" width="340" style="cursor: pointer; border-radius:20px;" />
+                    </a>
+                    <p style="font-weight: bold; font-weight: 600; font-size: x-large; font-family: Arial, Helvetica, sans-serif">
+                        @Html.DisplayFor(model => pro.NamePro)
+                    </p>
+                    <p style="font-weight: 200">
+                        @Html.DisplayFor(model => pro.DecriptionPro)
+                    </p>
+                    <p style="font-weight: 200">
+                        @Html.DisplayFor(model => pro.Price) đ
+                    </p>
+                    @*<div class="custom-link">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = pro.ProductID })
+                        </div>*@
+
+
+                    <div class="themgiohang">
+
+                        <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-danger">Thêm vào giỏ hàng</a>
+                        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+                        <script>
+                            $(document).ready(function () {
+                                $(".card-pro").hover(function () {
+                                    $(this).find(".themgiohang").show();
+                                }, function () {
+                                    $(this).find(".themgiohang").hide();
+                                });
+                            });
+                        </script>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+    <div class="MenuPage">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+
+
+
+
+
+

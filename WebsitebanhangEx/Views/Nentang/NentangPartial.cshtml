@@ -1,0 +1,76 @@
+﻿@using WebsitebanhangEx.Models
+@model List<Nentang>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+<style>
+    #div-u {
+        padding-top: 30px;
+        margin-top: 35px;
+        text-decoration: none;
+        padding-left: 0;
+    }
+
+    .div-cate {
+        height: 30px;
+        width: 100%;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: large;
+        padding-bottom: 10px;
+    }
+
+    .collection {
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: bold;
+        font-size: larger;
+        padding-left: 55px;
+    }
+
+    .custom-link {
+        color: black;
+        text-decoration: none;
+        font-size: larger;
+        font-family: 'Lexend Deca';
+        font-weight: 200;
+        cursor: pointer;
+    }
+
+        .custom-link:hover {
+            color: dimgray;
+            text-decoration: none;
+            font-size: larger;
+            font-family: 'Lexend Deca';
+            font-weight: 200;
+            cursor: pointer;
+        }
+
+    .custom-checkbox {
+        margin-right: 10px; /* Khoảng cách giữa checkbox và liên kết (tuỳ chọn) */
+        /* Thêm các thuộc tính CSS khác theo ý muốn */
+    }
+</style>
+<div class="collection">
+
+    <p style="padding-top:30px;">NỀN TẢNG</p>
+    <ul style="list-style-type:none" id="div-u">
+        @{
+            foreach (var item in Model)
+            {
+                <li class="div-cate">
+                    <input type="checkbox" id="checkbox-@item.IDBase" class="custom-checkbox" />
+                    @Html.ActionLink(item.NameBase, "Index", "Product", new { nentang = item.IDBase.Trim() }, new { @class = "custom-link" })
+                </li>
+
+
+
+            }
+        }
+    </ul>
+
+</div>
+
+
+
+
+
+

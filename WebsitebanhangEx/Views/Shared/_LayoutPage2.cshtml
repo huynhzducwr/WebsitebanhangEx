@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+
+    <link rel="stylesheet" href="~/Content/stylelayout.css" />
+    <title>Extend Tech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200&display=swap" rel="stylesheet">
+    <link rel="icon" href="/logo-pic/logotab.png" />
+    <style>
+        .badge {
+            color: red !important;
+            padding-right: 34px;
+            font-weight: bold;
+        }
+
+        .thumwoman {
+            width: 100%;
+            height: 500px; /* Đặt chiều cao của div */
+            margin-top: 400px;
+        }
+
+        #thumwoo {
+            height: 100%; /* Hình ảnh chiếm toàn bộ chiều cao của div */
+            width: 100%; /* Đảm bảo tỷ lệ khung hình bảo toàn */
+            display: block; /* Loại bỏ khoảng trắng dưới hình ảnh */
+        }
+
+        .body {
+            padding: 0;
+            margin: 0;
+        }
+
+        li.format-hello {
+            padding-top: 5px;
+            color: black;
+            font-size: small;
+            font-family: 'Lexend Deca', sans-serif;
+        }
+    </style>
+</head>
+<body style="background-color: white">
+    <header id="head-menu">
+        <!--phần top, tiêu đề web -->
+        <div id="logo-com">
+            <a href="https://localhost:44385/Home/Index"><img id="edit-logo" src="~/logo-pic/logo tech.png" /></a>
+
+
+        </div>
+        <div id="text">
+            <p id="toggleButton">| Nhãn hiệu của chúng tôi ▼ </p>
+
+            <!-- Danh sách (ban đầu ẩn) -->
+            <ul id="myList">
+                <li id="streamlab"><a href="https://streamlabs.com/" target="_blank" style="text-decoration:none;color:black;font-size:x-small;font-weight:800;"><img id="stream-icon" src="~/logo-pic/Streamlabs-review.jpg" />StreamLab</a></li>
+
+            </ul>
+
+            <!-- JavaScript để thực hiện việc hiển thị/ẩn danh sách -->
+            <script>
+                // Lấy tham chiếu đến các phần tử
+                var toggleButton = document.getElementById('toggleButton');
+                var myList = document.getElementById('myList');
+
+                // Xử lý sự kiện khi nút được ấn
+                toggleButton.addEventListener('click', function () {
+                    if (myList.style.display === 'none' || myList.style.display === '') {
+                        myList.style.display = 'block'; // Hiển thị danh sách
+                    } else {
+                        myList.style.display = 'none';  // Ẩn danh sách
+                    }
+                });
+            </script>
+        </div>
+        <div id="logo_world">
+            <span><a href="https://localhost:44385/Font_end.html"><img id="edit-logoworld" src="~/logo-pic/wolrd.jpg" /></a></span>
+            <span><a id="VN" href="https://localhost:44385/Font_end.html">Việt Nam</a></span>
+
+
+        </div>
+    </header>               <!--Kết thúc phần top-->
+    <!--phan nội dung thứ 1-->
+    <div id="container-chuot">
+        <br />
+        <br />
+        <br />
+        <nav id="navbar">
+            <ul id="nav-list">
+                <li class="nav-item-detail"><a class="navlink" href="https://localhost:44385/Product/Index" id="mua-sam">MUA SẮM</a></li>
+                <li class="nav-item-detail"><a class="navlink" href="https://localhost:44385/Font_end.html" id="kham-pha">KHÁM PHÁ</a></li>
+                <li class="nav-item-detail"><a class="navlink" href="https://localhost:44385/Font_end.html" id="doanh-nghiep">DOANH NGHIỆP</a></li>
+                <li class="nav-item-detail"><a class="navlink" href="https://localhost:44385/Font_end.html" id="ho-tro">HỖ TRỢ</a></li>
+
+            </ul>
+            <ul class="nav-right">
+                <li>
+                    <span>
+                        <a href="/ShoppingCart/ShowCart">
+
+                            <img src="@Url.Content("~/Content/images/cart.png")" style="height: 23px; width:23px; margin-top:0px;" />
+                        </a>
+                    </span>
+                    @Html.Action("BagCart", "ShoppingCart", new { @class = "badge" })
+                </li>
+                <li><a style="padding-right: 50px; font-size: small; color: #808080" href="/LoginCustomer/Index"><span class="glyphicon glyphicon-user"></span><img src="@Url.Content("~/Content/images/account.png")" style="height: 23px; width:23px; margin-top:1px;" /></a></li>
+                <li><a style="padding-right: 50px; font-size: small; color: #808080" href="/LoginCustomer/RegisterCustomer"><span class="glyphicon glyphicon-log-in"></span><img src="@Url.Content("~/Content/images/log-in.png")" style="height: 23px; width:23px; margin-top:3px;" /></a></li>
+                <li><a style="padding-right:10px; font-size:small;color:#808080;" href="@Url.Action("LogOutCustomer","LoginCustomer")">LogOut</a></li>
+                <li><a style="padding-right:10px; font-size:small;color:#808080;" href="@Url.Action("Profilee","LoginCustomer")">Profile</a></li>
+                @*<li class="format-hello">
+            @if (Session["Email"] == null)
+            {
+                <span>Hello</span>
+
+            }
+            else
+            {
+                <span><text>Hello </text> @Session["Email"]</span>
+
+            }
+        </li>*@
+                <li class="format-hello">
+                    @if (Session["IDCus"] != null)
+                    {
+                        <span><text>Hello </text>  @Session["Email"] <text> - Mã khách hàng: @Session["IDCus"] </text></span>
+                    }
+                    else
+                    {
+                        <span>Hello</span>
+                    }
+                </li>
+
+            </ul>
+
+
+            <div id="product-menu">
+                <div id="container-menu">
+                    <ul>
+                        <li class="list-menu"><img id="anhchuot" src="~/logo-pic/chuot-menu.png" /></li>
+                        <li class="list-menu"><a class="title-prod-menu" href="https://localhost:44385/Product/Index">CHUỘT</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="https://localhost:44385/Product?category=1">Dòng Master</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="https://localhost:44385/Product?category=2">Dòng Ergo</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Bộ đôi</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Phụ kiện máy tính để bàn</a></li>
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu2"><img id="anhbanphim" src="~/logo-pic/banphim-menu.png" /></li>
+                        <li class="list-menu2"><a class="title-prod-menu" href="dadadas">BÀN PHÍM</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Dòng Master</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Dòng Ergo</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Bộ đôi</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Bao bàn phím</a></li>
+
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu3"><img id="anhwebcam" src="~/logo-pic/webcam-menu.png" /><img id="anhtainghe" src="~/logo-pic/tainghe-icon.png" /></li>
+                        <li class="list-menu3"><a class="title-prod-menu" href="dadadas">WEBCAM & ÂM THANH</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Webcam</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Tai nghe &amp; Earbubs</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Thiết bị thu âm</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Loa máy tính</a></li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+
+            <div id="product-menu1">
+                <div id="container-menu1">
+                    <ul>
+                        <li class="list-menu"><img id="anhchuot" src="~/pic-menu/khampha1.png" /></li>
+                        <li class="list-menu"><a class="title-prod-menu" href="dadadas">PHÁT TRIỂN BỀN VỮNG</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Hành tinh</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Con người</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Hành động</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Tái chế</a></li>
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu2"><img id="anhbanphim" src="~/pic-menu/ergo-khampha.jpg" /></li>
+                        <li class="list-menu2"><a class="title-prod-menu" href="dadadas">GIỚI THIỆU VỀ CHÚNG TÔI</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Giới thiệu về</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Extend Tech</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Giải thưởng thiết kế</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Tác động xã hội</a></li>
+
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu3"><img id="anhwebcam" src="~/pic-menu/mx.jpg" /></li>
+                        <li class="list-menu3"><a class="title-prod-menu" href="dadadas">DÒNG ERGO</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Dòng Ergo</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Thiết lập học tập</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Các mẹo về sức khỏe</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Phòng thí nghiệm Ergo</a></li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="product-menu2">
+                <div id="container-menu2">
+                    <ul>
+                        <li class="list-menu"><img id="anhchuot" src="~/pic-menu/doangnhiep1.jpg" /></li>
+                        <li class="list-menu"><a class="title-prod-menu" href="dadadas">SẢN PHẨM</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Camera hội nghị</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Chuột & Bàn phím</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Tai nghe</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Webcam</a></li>
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu2"><img id="anhbanphim" src="~/pic-menu/doanhnghiep2.png" /></li>
+                        <li class="list-menu2"><a class="title-prod-menu" href="dadadas">PHẦN MỀM & DỊCH VỤ</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Chọn gói dịch vụ</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Quản lý đồng bộ hóa</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Điều chỉnh ứng dụng</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Đặt bàn</a></li>
+
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu3"><img id="anhwebcam" src="~/pic-menu/MicrosoftTeams-image.png" /></li>
+                        <li class="list-menu3"><a class="title-prod-menu" href="dadadas">ĐỐI TÁC</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Microsoft Teams</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Google</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Zoom</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Đối tác kênh</a></li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="product-menu3">
+                <div id="container-menu3">
+                    <ul>
+                        <li class="list-menu"><img id="anhchuot" src="~/pic-menu/hotro.jpg" /></li>
+                        <li class="list-menu"><a class="title-prod-menu" href="dadadas">DÀNH CHO CÁ NHÂN</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Trang chủ Hỗ trợ cá nhân</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Đăng ký Sản phẩm</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Tài liệu tải về</a></li>
+                        <li class="list-menu1"><a class="title-prod-menu1" href="dadadas">Đơn hàng/Trả hàng/Hoàn tiền</a></li>
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu2"><img id="anhbanphim" src="~/pic-menu/hotro2.jpg" /></li>
+                        <li class="list-menu2"><a class="title-prod-menu" href="dadadas">DÀNH CHO DOANH NGHIỆP & GIÁO DỤC</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Trang chủ Hỗ trợ Doanh nghiệp</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Hỗ trợ Hợp tác Video</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Hỗ trợ Giáo dục</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Liên hệ bộ phận Hỗ trợ Doanh nghiệp</a></li>
+
+
+                    </ul>
+                    <ul>
+                        <li class="list-menu3"><img id="anhtainghe" src="~/pic-menu/hotro3.jpg" /></li>
+                        <li class="list-menu3"><a class="title-prod-menu" href="dadadas">PHẦN MỀM</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Logi Tune</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Logitech Options</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">G HUB</a></li>
+                        <li class="list-menu33"><a class="title-prod-menu1" href="dadadas">Loa máy tính</a></li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+            <script src="~/Scripts/menu-prod.js"></script>
+            <script src="~/Scripts/menu-khampha.js"></script>
+            <script src="~/Scripts/menu-doanhnghiep.js"></script>
+            <script src="~/Scripts/menu-hotro.js"></script>
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="thumwoman">
+        <img id="thumwoo" src="~/Content/womenwhomaster.png" />
+    </div>
+
+    <div class="slide-show">
+        <div class="list-images">
+            <img src="~/logo-pic/galayy.jpg" width="100%" />
+            <img src="~/logo-pic/khihau.jpg" width="100%" />
+            <img src="~/logo-pic/gioithieuvelogitech.jpg" width="100%" />
+        </div>
+        <div class="btns">
+            <div class="btn-left btn"><i class='bx bx-chevron-left'></i></div>
+            <div class="btn-right btn"><i class='bx bx-chevron-right'></i></div>
+        </div>
+        <div class="index-images">
+            <div class="index-items index-items-0 active"></div>
+            <div class="index-items index-items-1"></div>
+            <div class="index-items index-items-2"></div>
+        </div>
+
+        <!-- Chèn nội dung mới sau phần slideshow -->
+        <div class="overlay-content">
+            <h1 id="phatrien">PHÁT TRIỂN BỀN VỮNG</h1>
+            <h1 id="minhbach">MINH BẠCH VỀ CARBON</h1>
+            <p id="TEXT11">Extend Tech là công ty điện tử tiêu dùng đầu tiên dán nhãn lên sản phẩm với số lượng carbon làm ấm <br />khí hậu được sử dụng để tạo ra chúng. Giờ đây, bạn có thể đưa ra lựa chọn sáng suốt không chỉ<br /> bởi giá cả và các tính năng của sản phẩm, mà còn bởi tác động đến môi trường nữa.</p>
+            <div id="button"><a id="hoverbut" href="https://localhost:44385/Font_end.html">CHIA SẺ CÁCH CHÚNG TÔI THỰC HIỆN</a></div>
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/index.js"></script>
+
+
+
+
+
+    <!--finished content 4-->
+
+    <footer id="foott">
+        <!--end-->
+        <div id="thehre">
+            <div id="container5">
+
+                <ul class="ull">
+                    <li class="gioithiu">GIỚI THIỆU</li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Câu chuyện về Extend Tech</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Nghề nghiệp</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Nhà đầu tư</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Blog</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Báo chí</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Liên hê với chúng tôi</a></li>
+                </ul>
+                <ul class="ull">
+                    <li class="gioithiu">GIÁ TRI</li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Tác động Xã hội</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Tính bền vững</a></li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Tái chế</a></li>
+
+                </ul>
+                <ul class="ull">
+                    <li class="gioithiu">KHÁCH HÀNG</li>
+                    <li class="credit2"><a href="https://localhost:44385/Font_end.html" class="credit22">Tùy chọn email</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div id="social">
+            <div>
+                <a id="sociallink" href="https://localhost:44385/Font_end.html"><img class="socialicon" src="~/logo-pic/fb.png" /></a>
+                <a id="sociallink" href="https://localhost:44385/Font_end.html"><img class="socialicon" src="~/logo-pic/twiter.png" /></a>
+                <a id="sociallink" href="https://localhost:44385/Font_end.html"><img class="socialicon" src="~/logo-pic/insta.png" /></a>
+            </div>
+
+            <form action="" method="post">
+
+                <input class="nhap>" type="text" id="email" name="email" placeholder="NHẬP ĐỊA CHỈ EMAIL" required>
+                <button type="submit"><img id="submitt" src="~/logo-pic/arrow.png" /></button>
+            </form>
+
+        </div>
+        <div class="rightt">
+            <input type="checkbox" id="agree" name="agree">
+            <label class="dongy" for="agree">Tôi đồng ý với các điều<br /> khoản và điều kiện.</label>
+        </div>
+        <div class="container6">
+            <ul class="ulll">
+                <li class="credit21">
+                    ©2023 Extend Tech. Bảo lưu mọi quyền
+                </li>
+                <li class="credit21"><a href="https://localhost:44385/Font_end.html" class="credit22">Điều khoản sử dụng |</a></li>
+                <li class="credit21"><a href="https://localhost:44385/Font_end.html" class="credit22">Chính sách bảo mât web |</a></li>
+                <li class="credit21"><a href="https://localhost:44385/Font_end.html" class="credit22">Chính sách bảo mật sản phẩm |</a></li>
+                <li class="credit21"><a href="https://localhost:44385/Font_end.html" class="credit22">Cài đặt cookie |</a></li>
+                <li class="credit21"><a href="https://localhost:44385/Font_end.html" class="credit22">Bản đồ trang web</a></li>
+
+            </ul>
+        </div>
+
+    </footer>
+
+</body>
+</html>

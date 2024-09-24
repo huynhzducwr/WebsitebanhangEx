@@ -1,0 +1,77 @@
+﻿@model WebsitebanhangEx.Models.Customer
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<style>
+    h2 {
+        color: #333;
+    }
+
+    /* Style for label and value container */
+    .profile-item {
+        margin-bottom: 10px;
+    }
+
+    /* Style for displaying labels */
+    .label {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    /* Style for displaying values */
+    .value {
+        color: #666;
+    }
+
+    /* Style for the colon separator */
+    .separator {
+        margin: 0 5px;
+    }
+    a{
+        color:black;
+        text-decoration:none;
+    }
+</style>
+
+<h2>Profile</h2>
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.IDCus)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.IDCus)</span>
+    </div>
+
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.NameCus)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.NameCus)</span>
+    </div>
+
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.FirstName)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.FirstName)</span>
+    </div>
+
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.DateBirth)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.DateBirth)</span>
+    </div>
+
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.Email)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.Email)</span>
+    </div>
+
+    <div class="profile-item">
+        <span class="label">@Html.DisplayNameFor(model => model.PasswordCus)</span>
+        <span class="separator">:</span>
+        <span class="value">@Html.DisplayFor(model => model.PasswordCus)</span>
+    </div>
+}

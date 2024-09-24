@@ -1,0 +1,111 @@
+﻿@model WebsitebanhangEx.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    .container {
+        height: 500px;
+        float: right;
+        width: 70%;
+        background-color: #f4f4f4;
+    }
+
+    #title-cate {
+        font-size: x-large;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .my-form-class {
+        margin: auto;
+    }
+
+    .avz {
+        float: left;
+        background-color: #f4f4f4;
+        width: 30%;
+        height: 500px;
+    }
+
+    #idcatee {
+        margin-right: 100px;
+    }
+
+    .text-box {
+        border: 1px solid #ccc; /* Đường viền ô văn bản */
+        border-radius: 5px; /* Độ cong của các góc */
+        padding: 5px; /* Khoảng cách từ nội dung đến đường viền */
+        font-size: 16px; /* Kích thước văn bản */
+        width: 200px; /* Chiều rộng */
+    }
+
+        /* Tô màu nền khi ô văn bản được focus (được chọn) */
+        .text-box:focus {
+            background-color: #f0f0f0;
+        }
+
+    .search-button {
+        background-color: #0074cc; /* Màu nền của nút */
+        color: #fff; /* Màu văn bản trên nút */
+        border: none; /* Loại bỏ đường viền */
+        border-radius: 5px; /* Độ cong của các góc */
+        padding: 10px 20px; /* Khoảng cách từ nội dung đến đường viền */
+        font-size: 16px; /* Kích thước văn bản */
+        cursor: pointer; /* Thay đổi kiểu con trỏ khi hover */
+    }
+
+        /* Tô màu nền khi nút "Search" được hover */
+        .search-button:hover {
+            background-color: #0058a6;
+        }
+
+    .display-text {
+        /* Tùy chỉnh kiểu dáng của văn bản hiển thị */
+        font-size: 14px; /* Kích thước văn bản */
+        font-weight: 300; /* Độ đậm */
+        color: #333; /* Màu sắc */
+        /* Thêm các kiểu dáng khác mà bạn muốn áp dụng */
+    }
+</style>
+<div class="avz">
+
+
+</div>
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Category</h4>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID) : <span class="display-text">@Html.DisplayFor(model => model.ID)</span>
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NameCate) : <span class="display-text">@Html.DisplayFor(model => model.NameCate)</span>
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateBy) : <span class="display-text">@Html.DisplayFor(model => model.CreateBy)</span>
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate) : <span class="display-text">@Html.DisplayFor(model => model.CreateDate)</span>
+            </dt>
+
+
+        </dl>
+    </div>
+    <p>
+
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

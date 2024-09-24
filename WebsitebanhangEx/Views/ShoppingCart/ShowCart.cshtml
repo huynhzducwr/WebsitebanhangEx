@@ -1,0 +1,272 @@
+﻿@model WebsitebanhangEx.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: white;
+    }
+
+    .title {
+        padding-left: 0px;
+    }
+
+    #homee {
+        text-decoration: none;
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    #cartt {
+        text-decoration: none;
+        color: dimgray;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    .containerr {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    #tieptuc {
+        text-decoration: none;
+        color: dimgrey;
+        font-family: 'Lexend Deca', sans-serif;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    th {
+        padding-right: 85px;
+    }
+
+    #tongtien {
+        padding-right: 85px;
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 600;
+    }
+
+    td {
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 600;
+    }
+
+    #xoaa {
+        width: 60px;
+        height: 35px;
+        background-color: #dc3545;
+        border-color: #dc3545;
+        border-radius: 5px;
+        padding-top: 10px;
+    }
+
+    #xoa1 {
+        text-decoration: none;
+        color: white;
+        padding-left: 14px;
+    }
+
+    #update-button {
+        width: 80px;
+        height: 35px;
+        background-color: #28a745;
+        border-color: #28a745;
+        border-radius: 5px;
+        padding-top: -6px;
+        color: white;
+        border: none;
+    }
+
+        #update-button:hover {
+            cursor: pointer;
+        }
+
+    .soluongg {
+        border-radius: 5px;
+        width: 70px;
+        height: 40px;
+    }
+
+    .btn1 {
+        width: 113px;
+        height: 46px;
+        font-size: small;
+        border-radius: 5px;
+        background-color: #28a745;
+        border: none;
+        font-size: small;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+
+    .btn2 {
+        text-decoration: none;
+        font-size: small;
+        font-weight: bold;
+        color: white;
+    }
+
+    .regis {
+        width: 87px;
+        height: 44px;
+        border-radius: 5px;
+        border: none;
+        background-color: #DC3545;
+    }
+
+    .codee {
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .address {
+        height: 30px;
+        border-radius: 5px;
+    }
+</style>
+<div class="containerr">
+    <div class="title">
+        <p><a href="home" id="homee">Home</a>&nbsp;&nbsp;&nbsp; <a id="cartt" href="https://localhost:44349/Product">>  &nbsp;&nbsp;&nbsp;Giỏ hàng</a> </p>
+    </div>
+    <a id="tieptuc" href="@Url.Action("Index","Product")"> Tiếp tục mua hàng</a>
+        
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+
+                    decimal total = item._quantity * (decimal)item._product.Price.Value;
+                    <tr>
+                        <td>@Html.DisplayFor(model => item._product.NamePro)</td>
+                        <td><img src="@Url.Content(item._product.ImagePro)" height="80" width="80" /></td>
+                        <td> @Html.DisplayFor(model => item._product.Price) </td>
+                        <td>
+                            @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                            {
+                                <input type="hidden" value="@item._product.ProductID" name="idPro" />
+                                <input class="soluongg" type="number" value="@item._quantity" name="cartQuantity" />
+                                <input type="submit" value="Cập nhật" id="update-button" />
+
+
+                            }
+                        </td>
+                        <td>@total</td>
+                        <td>
+                            <div id="xoaa">
+                                <a id="xoa1" href="/ShoppingCart/RemoveCart/@item._product.ProductID">Xóa</a>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                }
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td id="tongtien" colspan="6" style="text-align:right"> Tổng:   @Model.Total_money()</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="4">
+                        @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                        {
+                            <table style="border-collapse:separate;border-spacing:5px;">
+                            
+                                <tr>
+                                    <td>Mã khách hàng:</td>
+                                    <td><input type="number" name="Mã khách hàng" class="codee" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ nhận hàng: </td>
+                                    <td><input type="text" name="Địa chỉ nhận hàng" class="address" required /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="submit" value="Thanh toán" class="btn1" />
+                                        <button class="regis"><a href="@Url.Action("RegisterCustomer","LoginCustomer")" class="btn2">Đăng kí</a></button>
+                                        @*<a href="@Url.Action("Create","Customer")" class="btn2">Register</a>*@
+
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+
+
+
+
+
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        @Html.Partial("EmptyCart")
+    }
+
+
+
+</div>
+

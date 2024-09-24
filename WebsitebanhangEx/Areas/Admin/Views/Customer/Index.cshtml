@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebsitebanhangEx.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<h2> Danh sách tài khoản khách hàng</h2>
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    <input type="text" name="_name" />
+    <input type="submit" value="Search" />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDCus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameCus)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PasswordCus)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameCus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PasswordCus)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+}
+
+
+
+
+

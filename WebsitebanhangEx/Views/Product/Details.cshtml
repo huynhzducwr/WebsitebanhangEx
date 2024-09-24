@@ -1,0 +1,182 @@
+﻿@model WebsitebanhangEx.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="~/Content/styleproductdetail.css" />
+<style>
+    .thong-so-content {
+        /* Thêm các thuộc tính CSS tùy chỉnh cho lớp thong-so-content ở đây */
+        font-family: 'Lexend Deca', sans-serif;
+        /* Thêm các thuộc tính CSS khác tùy chọn */
+    }
+</style>
+<div class="container-prod-detail">
+
+
+    <ul id="container-detail">
+        <li class="font-chuot">/Chuột</li>
+        <li class="font-mx"><b>/<span class="display-text">@Html.DisplayFor(model => model.NamePro)</span> </b></li>
+    </ul>
+
+    <div class="mouse-detail">
+        <div class="pic-container">
+
+            @{
+                var pro = Model;
+            }
+
+            <img src="@Url.Content(pro.ImagePro)" height="340" width="340" cursor="pointer" />
+
+
+        </div>
+
+        <div class="detaill">
+
+
+
+            <h2>@Html.DisplayFor(model => model.NamePro)</h2>
+            <p class="chuot-khongday">@Html.DisplayFor(model => model.DecriptionPro)</p>
+            <p class="price-prod">@Html.DisplayFor(model => model.Price) đ</p>
+            <p class="xamnhat">@Html.DisplayFor(model => model.Color)</p>
+
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton1">Thông số chi & Chi tiết ▼</p>
+                <div id="list-detail" class="thong-so-content" style="display: none;">
+                    @Html.DisplayFor(model => model.ThongSo)
+                </div>
+
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton1 = document.getElementById('toggleButton1');
+                    var myList1 = document.getElementById('list-detail');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton1.addEventListener('click', function () {
+                        if (myList1.style.display === 'none' || myList1.style.display === '') {
+                            myList1.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList1.style.display = 'none'; // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+
+
+            <div class="thongso">
+                <hr />
+
+                <p id="toggleButton2"> Khả năng tương thích ▼</p>
+                <div id="list-detail2" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Tuongthich)
+                </div>
+
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton2 = document.getElementById('toggleButton2');
+                    var myList2 = document.getElementById('list-detail2');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton2.addEventListener('click', function () {
+                        if (myList2.style.display === 'none' || myList2.style.display === '') {
+                            myList2.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList2.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+
+
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton3"> Trong hộp ▼</p>
+                <div id="list-detail3" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Tronghop)
+                </div>
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton3 = document.getElementById('toggleButton3');
+                    var myList3 = document.getElementById('list-detail3');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton3.addEventListener('click', function () {
+                        if (myList3.style.display === 'none' || myList3.style.display === '') {
+                            myList3.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList3.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton4"> Hỗ trợ ▼</p>
+                <div id="list-detail4" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Hotro)
+                </div>
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton4 = document.getElementById('toggleButton4');
+                    var myList4 = document.getElementById('list-detail4');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton4.addEventListener('click', function () {
+                        if (myList4.style.display === 'none' || myList4.style.display === '') {
+                            myList4.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList4.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+            <a href="/ShoppingCart/AddToCart/@pro.ProductID">
+                <button type="button" id="nut-muangay">MUA NGAY</button>
+            </a>
+        
+
+        </div>
+    </div>
+
+
+    <div class="mota4k">
+        <div class="text">
+            <h3>THEO DÕI 8K DPI <br />TRÊN MỌI BỀ MẶT</h3>
+            <p style="font-family: 'Lexend Deca', sans-serif;">
+                MX Master 3S được trang bị cảm biến chính xác<br /> nhất từ trước đến nay của chúng tôi, với độ chính xác và độ nhạy cấp độ mới.
+                Cảm biến quang học 8.000 DPI theo dõi hầu như ở mọi nơi – ngay cả trên kính.Bạn có thể điều chỉnh độ nhạy khi theo dõi với Logi Options và thiết lập mức độ phù hợp với luồng công việc và độ phân giải màn hình của bạn.
+            </p>
+        </div>
+        <div class="anh4k">
+            <img src="~/product-detail/anh4k.png" class="anh4kk" />
+        </div>
+    </div>
+</div>
+<div id="content2">
+
+    <div class="text1">
+        <h3 style="font-weight:bold">CUỘN 1.000 DÒNG MỘT GIÂY</h3>
+        <p style="font-family: 'Lexend Deca', sans-serif;">
+            Tính năng cuộn điện từ MagSpeed hoàn toàn mới đủ chính xác để dừng ở <br />một pixel và đủ nhanh để cuộn 1.000 dòng mỗi giây. Và nó còn gần như yên tĩnh.
+
+            Vật liệu thép gia công trên máy của bánh xe tạo độ nhám hoàn hảo và đủ nặng để tạo ra lực quán tính động để bạn cảm nhận được - nhưng không thể nghe thấy.
+        </p>
+    </div>
+    <video src="~/product-detail/GIỚI THIỆU MX MASTER 3S vi.mp4" class="vid" type="video/mp4" autoplay="autoplay" muted controls></video>
+
+</div>
+<div id="content3">
+    <img src="~/product-detail/ketnoitucthi.png" class="ketnoi" />
+</div>
+
+
+
+
+

@@ -1,0 +1,4 @@
+﻿
+@model WebsitebanhangEx.Models.Handsize
+@Html.DropDownListFor(model => model.IDSize,
+new SelectList(Model.ListSize.OrderBy(model => model.NameSize), "IDSize", "NameSize"), "--Select Size")

@@ -1,0 +1,5 @@
+﻿
+@model WebsitebanhangEx.Models.Nentang
+@Html.DropDownListFor(model => model.IDBase,
+new SelectList(Model.ListNentang.OrderBy(model => model.NameBase), "IDBase", "NameBase"), "--Select Base")
+

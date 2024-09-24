@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GearTechVN</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap" rel="stylesheet">
+
+    <style>
+        #div-footer {
+            text-align: center;
+            bottom: 0;
+            left: 0;
+            padding-top: 15px;
+            height: 100px;
+            width: 100%;
+            background-color: #000000;
+            color: #cac1c1;
+            font-size: medium;
+            margin-top: 200px;
+        }
+
+        li.format-hello {
+            padding-top: 5px;
+            color: white;
+        }
+
+        #animation-top5:hover {
+            color: white;
+            text-shadow: 1px 1px 2px gray, 0 0 25px red, 0 0 5px red;
+        }
+
+        .navbar-expand-sm .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto;
+            justify-content: space-between;
+        }
+
+        p {
+            font-family: 'Lexend Deca', sans-serif;
+        }
+
+        #animation-top55 {
+            font-weight: bold;
+            font-size: medium;
+            font-family: 'Lexend Deca', sans-serif;
+            text-decoration: none;
+            background-color: none;
+            color: black;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-family: 'Lexend Deca', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("EXTENDED TECH", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Product", "ProductAdmin", "Product", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("OrderPro", "Index", "OrderPro", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Customer", "Index", "Customer", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("OrderDetail", "Index", "OrderDetail", new { area = "Admin" }, new { @class = "nav-link" })</li>
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a style="padding-right: 50px; font-size: small; color: #808080; text-decoration:none" href="/Admin/LoginUser/RegisterUser"><span class="glyphicon glyphicon-user"></span><img src="@Url.Content("~/Content/images/user (1).png")" style="height: 30px; width:30px; margin-top:1px;" />Sign Up</a></li>
+                    <li><a style="padding-right: 50px; font-size: small; color: #808080; text-decoration: none" href="/Admin/LoginUser/Index"><span class="glyphicon glyphicon-log-in"></span><img src="@Url.Content("~/Content/images/log-in.png")" style="height: 30px; width:30px; margin-top:-5px;" />Login</a></li>
+                    <li><a style="padding-right: 10px; font-size: small; color: #808080; text-decoration: none" href="/Admin/LoginUser/Index">LogOut</a></li>
+                    <li class="format-hello">
+                        @if (Session["NameUser"] == null)
+                        {
+                            <span>Hello</span>
+
+                        }
+                        else
+                        {
+                            <span><text>Hello </text> @Session["NameUser"]</span>
+
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        <div class="row">
+
+            <div class="col-md-10" id="div-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div id="div-footer">
+        <p>&copy; @DateTime.Now.Year - EXTENDED TECH</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

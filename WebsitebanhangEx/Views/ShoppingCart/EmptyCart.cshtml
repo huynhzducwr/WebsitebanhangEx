@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+<style>
+    .title {
+        padding-left: 0px;
+        margin-top: -137px;
+    }
+
+    #homee {
+        text-decoration: none;
+        color: black;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    #cartt {
+        text-decoration: none;
+        color: dimgray;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    th {
+        padding-right: 85px;
+    }
+
+    td {
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 600;
+    }
+
+    .containerr {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        height: 500px;
+    }
+
+    #tieptuc {
+        text-decoration: none;
+        color: dimgrey;
+        font-family: 'Lexend Deca', sans-serif;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+</style>
+<div class="containerr">
+    <div class="title">
+        <p><a href="home" id="homee">Home</a>&nbsp;&nbsp;&nbsp; <a id="cartt" href="Giỏ hàng"> >  &nbsp;&nbsp;&nbsp;Giỏ hàng</a> </p>
+    </div>
+
+    <a id="tieptuc" href="@Url.Action("Index","Product")"> Tiếp tục mua hàng</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Hình sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    <br />
+
+                    Không có Sản Phẩm trong Giỏ Hàng !!!
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <br />
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

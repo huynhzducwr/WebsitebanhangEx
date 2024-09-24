@@ -1,0 +1,146 @@
+﻿@model WebsitebanhangEx.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage1.cshtml";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="~/Content/styleproductdetail1.css" />
+<style>
+    .thong-so-content {
+        /* Thêm các thuộc tính CSS tùy chỉnh cho lớp thong-so-content ở đây */
+        font-family: 'Lexend Deca', sans-serif;
+        /* Thêm các thuộc tính CSS khác tùy chọn */
+    }
+</style>
+<div class="container-prod-detail">
+
+
+    <ul id="container-detail">
+        <li class="font-chuot">/Chuột</li>
+        <li class="font-mx"><b>/<span class="display-text">@Html.DisplayFor(model => model.NamePro)</span> </b></li>
+    </ul>
+
+    <div class="mouse-detail">
+        <div class="pic-container">
+
+            @{
+                var pro = Model;
+            }
+
+            <img src="@Url.Content(pro.ImagePro)" height="340" width="340" cursor="pointer" />
+
+
+        </div>
+
+        <div class="detaill">
+
+
+
+            <h2>@Html.DisplayFor(model => model.NamePro)</h2>
+            <p class="chuot-khongday">@Html.DisplayFor(model => model.DecriptionPro)</p>
+            <p class="price-prod">@Html.DisplayFor(model => model.Price) đ</p>
+            <p class="xamnhat">@Html.DisplayFor(model => model.Color)</p>
+
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton1">Thông số chi & Chi tiết ▼</p>
+                <div id="list-detail" class="thong-so-content" style="display: none;">
+                    @Html.DisplayFor(model => model.ThongSo)
+                </div>
+
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton1 = document.getElementById('toggleButton1');
+                    var myList1 = document.getElementById('list-detail');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton1.addEventListener('click', function () {
+                        if (myList1.style.display === 'none' || myList1.style.display === '') {
+                            myList1.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList1.style.display = 'none'; // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+
+
+            <div class="thongso">
+                <hr />
+
+                <p id="toggleButton2"> Khả năng tương thích ▼</p>
+                <div id="list-detail2" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Tuongthich)
+                </div>
+
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton2 = document.getElementById('toggleButton2');
+                    var myList2 = document.getElementById('list-detail2');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton2.addEventListener('click', function () {
+                        if (myList2.style.display === 'none' || myList2.style.display === '') {
+                            myList2.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList2.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+
+
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton3"> Trong hộp ▼</p>
+                <div id="list-detail3" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Tronghop)
+                </div>
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton3 = document.getElementById('toggleButton3');
+                    var myList3 = document.getElementById('list-detail3');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton3.addEventListener('click', function () {
+                        if (myList3.style.display === 'none' || myList3.style.display === '') {
+                            myList3.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList3.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+            <div class="thongso">
+                <hr />
+                <p id="toggleButton4"> Hỗ trợ ▼</p>
+                <div id="list-detail4" style="display: none; font-family: 'Lexend Deca', sans-serif;">
+                    @Html.DisplayFor(model => model.Hotro)
+                </div>
+                <script>
+                    // Lấy tham chiếu đến các phần tử
+                    var toggleButton4 = document.getElementById('toggleButton4');
+                    var myList4 = document.getElementById('list-detail4');
+
+                    // Xử lý sự kiện khi nút được ấn
+                    toggleButton4.addEventListener('click', function () {
+                        if (myList4.style.display === 'none' || myList4.style.display === '') {
+                            myList4.style.display = 'block'; // Hiển thị danh sách
+                        } else {
+                            myList4.style.display = 'none';  // Ẩn danh sách
+                        }
+                    });
+                </script>
+            </div>
+           
+
+        </div>
+    </div>
+
+
+    
